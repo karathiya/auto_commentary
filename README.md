@@ -8,10 +8,11 @@ You will need to generate Authentication token for both of them to get started.
 
 Once you are done generating the tokens, create .env.local file and add below tokens.
 
+```bash
 OPENAI_API_KEY=
 NEXT_PUBLIC_ELEVEN_LABS_API_KEY=
 NEXT_PUBLIC_ELEVEN_LABS_VOICE_ID=
-
+```
 
 Once done, run the development server:
 
