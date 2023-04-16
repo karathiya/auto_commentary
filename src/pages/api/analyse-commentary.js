@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require('openai');
 
 export default async function handler(req, res) {
-  //const { footballData } = JSON.parse(req.body);
+  //const { matchData } = JSON.parse(req.body);
 
   // Sets up the configuration for the OpenAI API
   const configuration = new Configuration({
@@ -14,9 +14,9 @@ export default async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: `You're an experienced football (soccer) commentator. A match has just ended. You will be given raw data about the match, and you should provide a friendly, enthusiastic, conversational analysis of the data summarising the game.`,
+        content: `You're an experienced cricket commentator. A match has just ended. You will be given raw data about the match, and you should provide a friendly, enthusiastic, conversational analysis of the data summarising the game.`,
       },
-      { role: 'user', content: req.body.footballData },
+      { role: 'user', content: req.body.matchData },
     ],
     max_tokens: 320,
     frequency_penalty: 0.2,

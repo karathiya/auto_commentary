@@ -1,10 +1,13 @@
-import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import FootballDataInput from './FootballDataInput';
 import { useState } from 'react';
-import FootballCommentaryAnalysisText from './FootballCommentaryAnalysisText';
-import FootballCommentaryAudio from './FootballCommentaryAudio';
+
+import Head from 'next/head';
+
+import styles from '@/styles/Home.module.css';
+
 import LoadingPlaceholder from './LoadingPlaceholder';
+import MatchCommentaryAnalysisText from './MatchCommentaryAnalysisText';
+import MatchCommentaryAudio from './MatchCommentaryAudio';
+import MatchDataInput from './MatchDataInput';
 
 export default function Home() {
   const [currentText, setCurrentText] = useState('');
@@ -21,7 +24,7 @@ export default function Home() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ footballData: currentText }),
+      body: JSON.stringify({ matchData: currentText }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -70,18 +73,18 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Football Commentary Generator</title>
+        <title>Match Commentary Generator</title>
         <meta
           name="description"
-          content="An app that generates football commentary from raw football data."
+          content="An app that generates match commentary from raw match data."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div className={styles.container}>
-        {/* Input field for the raw football data */}
-        <FootballDataInput
+        {/* Input field for the raw match data */}
+        <MatchDataInput
           text={currentText}
           onCommentaryRequested={() => handleCommentaryRequest()}
           onTextChange={onTextChange}
@@ -92,7 +95,7 @@ export default function Home() {
           {currentCommentaryAnalysis === null && commentaryRequested ? (
             <LoadingPlaceholder generationLabel={'commentary'} />
           ) : (
-            <FootballCommentaryAnalysisText text={currentCommentaryAnalysis} />
+            <MatchCommentaryAnalysisText text={currentCommentaryAnalysis} />
           )}
         </div>
 
@@ -102,7 +105,7 @@ export default function Home() {
           currentCommentaryAudio === null ? (
             <LoadingPlaceholder generationLabel={'audio'} />
           ) : (
-            <FootballCommentaryAudio audio={currentCommentaryAudio} />
+            <MatchCommentaryAudio audio={currentCommentaryAudio} />
           )}
         </div>
       </div>
